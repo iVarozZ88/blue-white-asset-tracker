@@ -38,6 +38,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const typeIcons: Record<AssetType, React.ReactNode> = {
   computer: <Computer className="h-5 w-5" />,
@@ -64,18 +65,19 @@ const AssetDetails = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [deleting, setDeleting] = useState(false);
+  const { t, formatMessage } = useLanguage();
 
   const asset = mockAssets.find((a) => a.id === id);
 
   if (!asset) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh]">
-        <h1 className="text-2xl font-bold mb-4">Asset Not Found</h1>
+        <h1 className="text-2xl font-bold mb-4">{t("assetDetails.notFound")}</h1>
         <p className="text-muted-foreground mb-6">
-          The asset you're looking for doesn't exist or has been removed.
+          {t("assetDetails.notFoundDesc")}
         </p>
         <Button asChild>
-          <Link to="/">Return to Dashboard</Link>
+          <Link to="/">{t("assetDetails.returnToDashboard")}</Link>
         </Button>
       </div>
     );
@@ -109,7 +111,7 @@ const AssetDetails = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Asset Information</CardTitle>
+              <CardTitle>{t("assetDetails.assetInfo")}</CardTitle>
               <div className="flex items-center gap-2">
                 <Button variant="outline" size="icon" asChild>
                   <Link to={`/assets/${asset.id}/edit`}>
@@ -124,40 +126,39 @@ const AssetDetails = () => {
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogTitle>{t("assetDetails.areYouSure")}</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This will permanently delete {asset.name} from your inventory.
-                        This action cannot be undone.
+                        {formatMessage("assetDetails.deleteConfirmation", { name: asset.name })}
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>{t("assetDetails.cancel")}</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={handleDelete}
                         className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                         disabled={deleting}
                       >
-                        {deleting ? "Deleting..." : "Delete Asset"}
+                        {deleting ? t("assetDetails.deleting") : t("assetDetails.deleteAsset")}
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
             </div>
-            <CardDescription>Details for this inventory item</CardDescription>
+            <CardDescription>{t("assetDetails.details")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-sm font-medium text-muted-foreground">Type</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.type")}</h3>
                   <div className="flex items-center gap-2 mt-1">
                     {typeIcons[asset.type]}
                     <span className="capitalize">{asset.type}</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-muted-foreground">Status</h3>
+                  <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.status")}</h3>
                   <div className="flex items-center gap-2 mt-1">
                     <span
                       className="h-3 w-3 rounded-full"
@@ -168,15 +169,15 @@ const AssetDetails = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Serial Number</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.serialNumber")}</h3>
                 <p className="mt-1">{asset.serialNumber}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Purchase Date</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.purchaseDate")}</h3>
                 <p className="mt-1">{new Date(asset.purchaseDate).toLocaleDateString()}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Last Updated</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.lastUpdated")}</h3>
                 <p className="mt-1">{new Date(asset.lastUpdated).toLocaleDateString()}</p>
               </div>
             </div>
@@ -185,35 +186,35 @@ const AssetDetails = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Assignment Details</CardTitle>
-            <CardDescription>Information about asset assignment</CardDescription>
+            <CardTitle>{t("assetDetails.assignmentDetails")}</CardTitle>
+            <CardDescription>{t("assetDetails.assignmentInfo")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Assigned To</h3>
-                <p className="mt-1">{asset.assignedTo || "Not assigned"}</p>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.assignedTo")}</h3>
+                <p className="mt-1">{asset.assignedTo || t("assetDetails.notAssigned")}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Location</h3>
-                <p className="mt-1">{asset.location || "No location specified"}</p>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.location")}</h3>
+                <p className="mt-1">{asset.location || t("assetDetails.noLocation")}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium text-muted-foreground">Notes</h3>
+                <h3 className="text-sm font-medium text-muted-foreground">{t("assetDetails.notes")}</h3>
                 <p className="mt-1 whitespace-pre-wrap">
-                  {asset.notes || "No notes available"}
+                  {asset.notes || t("assetDetails.noNotes")}
                 </p>
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between border-t px-6 py-4">
             <Button variant="outline" asChild>
-              <Link to={`/assets/${asset.id}/edit`}>Edit Details</Link>
+              <Link to={`/assets/${asset.id}/edit`}>{t("assetDetails.editDetails")}</Link>
             </Button>
             {asset.status === "available" ? (
-              <Button>Assign Asset</Button>
+              <Button>{t("assetDetails.assignAsset")}</Button>
             ) : asset.status === "assigned" ? (
-              <Button variant="secondary">Unassign Asset</Button>
+              <Button variant="secondary">{t("assetDetails.unassignAsset")}</Button>
             ) : null}
           </CardFooter>
         </Card>

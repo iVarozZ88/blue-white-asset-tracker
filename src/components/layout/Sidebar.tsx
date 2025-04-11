@@ -13,11 +13,19 @@ import {
   BarChart, 
   Plus,
   Menu,
-  X
+  X,
+  Globe
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 const NavItem = ({ 
   icon: Icon, 
@@ -49,20 +57,21 @@ const NavItem = ({
 export function Sidebar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { t, language, setLanguage } = useLanguage();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const navItems = [
-    { icon: BarChart, label: "Dashboard", to: "/" },
-    { icon: Computer, label: "Computers", to: "/category/computer" },
-    { icon: Laptop, label: "Laptops", to: "/category/laptop" },
-    { icon: Monitor, label: "Monitors", to: "/category/monitor" },
-    { icon: Mouse, label: "Mice", to: "/category/mouse" },
-    { icon: Keyboard, label: "Keyboards", to: "/category/keyboard" },
-    { icon: Phone, label: "Telephones", to: "/category/telephone" },
-    { icon: Smartphone, label: "Mobile Phones", to: "/category/mobile" },
-    { icon: ScanSearch, label: "Scanners", to: "/category/scanner" },
-    { icon: Printer, label: "Printers", to: "/category/printer" },
+    { icon: BarChart, label: t("sidebar.dashboard"), to: "/" },
+    { icon: Computer, label: t("sidebar.computers"), to: "/category/computer" },
+    { icon: Laptop, label: t("sidebar.laptops"), to: "/category/laptop" },
+    { icon: Monitor, label: t("sidebar.monitors"), to: "/category/monitor" },
+    { icon: Mouse, label: t("sidebar.mice"), to: "/category/mouse" },
+    { icon: Keyboard, label: t("sidebar.keyboards"), to: "/category/keyboard" },
+    { icon: Phone, label: t("sidebar.telephones"), to: "/category/telephone" },
+    { icon: Smartphone, label: t("sidebar.mobilePhones"), to: "/category/mobile" },
+    { icon: ScanSearch, label: t("sidebar.scanners"), to: "/category/scanner" },
+    { icon: Printer, label: t("sidebar.printers"), to: "/category/printer" },
   ];
 
   return (
@@ -84,22 +93,49 @@ export function Sidebar() {
       >
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
-            <h2 className="text-xl font-bold text-sidebar-foreground">Tech Inventory</h2>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="md:hidden text-sidebar-foreground"
-              onClick={toggleSidebar}
-            >
-              <X className="h-5 w-5" />
-            </Button>
+            <h2 className="text-xl font-bold text-sidebar-foreground">{t("app.title")}</h2>
+            <div className="flex items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="text-sidebar-foreground"
+                  >
+                    <Globe className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem 
+                    onClick={() => setLanguage("en")}
+                    className={language === "en" ? "bg-accent" : ""}
+                  >
+                    English
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => setLanguage("es")}
+                    className={language === "es" ? "bg-accent" : ""}
+                  >
+                    Español
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="md:hidden text-sidebar-foreground"
+                onClick={toggleSidebar}
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
 
           <div className="p-4">
             <Link to="/assets/new">
               <Button className="w-full gap-2 bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90">
                 <Plus className="h-5 w-5" />
-                <span>Add New Asset</span>
+                <span>{t("sidebar.addNewAsset")}</span>
               </Button>
             </Link>
           </div>

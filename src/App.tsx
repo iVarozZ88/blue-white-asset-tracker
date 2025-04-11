@@ -11,26 +11,29 @@ import AssetDetails from "@/pages/AssetDetails";
 import NewAsset from "@/pages/NewAsset";
 import EditAsset from "@/pages/EditAsset";
 import NotFound from "@/pages/NotFound";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/category/:type" element={<CategoryView />} />
-            <Route path="/assets/new" element={<NewAsset />} />
-            <Route path="/assets/:id" element={<AssetDetails />} />
-            <Route path="/assets/:id/edit" element={<EditAsset />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </MainLayout>
-      </BrowserRouter>
+      <LanguageProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/category/:type" element={<CategoryView />} />
+              <Route path="/assets/new" element={<NewAsset />} />
+              <Route path="/assets/:id" element={<AssetDetails />} />
+              <Route path="/assets/:id/edit" element={<EditAsset />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </MainLayout>
+        </BrowserRouter>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
