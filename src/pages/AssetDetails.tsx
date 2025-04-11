@@ -10,6 +10,8 @@ import {
   CardDescription,
   CardFooter,
   Button,
+} from "@/components/ui";
+import { 
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -18,8 +20,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui";
+  AlertDialogTrigger 
+} from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import {
   Computer,
@@ -29,7 +31,7 @@ import {
   Keyboard,
   Phone,
   Smartphone,
-  Scanner,
+  ScanSearch,
   Printer,
   Edit,
   Trash2,
@@ -45,7 +47,7 @@ const typeIcons: Record<AssetType, React.ReactNode> = {
   keyboard: <Keyboard className="h-5 w-5" />,
   telephone: <Phone className="h-5 w-5" />,
   mobile: <Smartphone className="h-5 w-5" />,
-  scanner: <Scanner className="h-5 w-5" />,
+  scanner: <ScanSearch className="h-5 w-5" />,
   printer: <Printer className="h-5 w-5" />,
   other: <Computer className="h-5 w-5" />,
 };

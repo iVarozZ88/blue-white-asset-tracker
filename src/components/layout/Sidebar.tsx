@@ -9,7 +9,7 @@ import {
   Phone, 
   Smartphone, 
   Printer, 
-  Scanner, 
+  ScanSearch, 
   BarChart, 
   Plus,
   Menu,
@@ -61,7 +61,7 @@ export function Sidebar() {
     { icon: Keyboard, label: "Keyboards", to: "/category/keyboard" },
     { icon: Phone, label: "Telephones", to: "/category/telephone" },
     { icon: Smartphone, label: "Mobile Phones", to: "/category/mobile" },
-    { icon: Scanner, label: "Scanners", to: "/category/scanner" },
+    { icon: ScanSearch, label: "Scanners", to: "/category/scanner" },
     { icon: Printer, label: "Printers", to: "/category/printer" },
   ];
 
