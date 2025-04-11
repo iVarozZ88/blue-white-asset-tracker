@@ -1,4 +1,3 @@
-
 export const en = {
   app: {
     title: "Tech Inventory"
@@ -56,7 +55,9 @@ export const en = {
     deleteConfirmation: "This will permanently delete {name} from your inventory. This action cannot be undone.",
     cancel: "Cancel",
     deleteAsset: "Delete Asset",
-    deleting: "Deleting..."
+    deleting: "Deleting...",
+    deleteSuccess: "Asset successfully deleted",
+    deleteError: "Error deleting asset"
   },
   newAsset: {
     title: "Add New Asset",

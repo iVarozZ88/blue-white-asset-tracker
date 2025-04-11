@@ -1,4 +1,3 @@
-
 export const es = {
   app: {
     title: "Inventario Tecnológico"
@@ -56,7 +55,9 @@ export const es = {
     deleteConfirmation: "Esto eliminará permanentemente {name} de tu inventario. Esta acción no se puede deshacer.",
     cancel: "Cancelar",
     deleteAsset: "Eliminar Activo",
-    deleting: "Eliminando..."
+    deleting: "Eliminando...",
+    deleteSuccess: "Activo eliminado exitosamente",
+    deleteError: "Error al eliminar el activo"
   },
   newAsset: {
     title: "Añadir Nuevo Activo",
