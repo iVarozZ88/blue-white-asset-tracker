@@ -66,5 +66,33 @@ export const es = {
     title: "Editar {name}",
     notFound: "Activo No Encontrado",
     notFoundDesc: "El activo que estás intentando editar no existe o ha sido eliminado."
+  },
+  dashboard: {
+    title: "Panel de Control",
+    overview: "Resumen del inventario tecnológico de su empresa",
+    totalAssets: "Activos Totales",
+    acrossAllCategories: "en todas las categorías",
+    available: "Disponibles",
+    readyForAssignment: "listos para asignar",
+    assigned: "Asignados",
+    currentlyInUse: "actualmente en uso",
+    inMaintenance: "En Mantenimiento",
+    beingRepairedOrServiced: "en reparación o servicio",
+    assetDistribution: "Distribución de Activos por Tipo",
+    assetStatus: "Estado de los Activos",
+    recentlyUpdated: "Activos Recientemente Actualizados",
+    lastUpdatedItems: "Últimos elementos actualizados en su inventario",
+    tableHeaders: {
+      name: "Nombre",
+      type: "Tipo",
+      status: "Estado",
+      assignedTo: "Asignado a",
+      lastUpdated: "Última Actualización"
+    }
+  },
+  notFound: {
+    title: "404",
+    message: "¡Ups! Página no encontrada",
+    returnHome: "Volver al Inicio"
   }
 };

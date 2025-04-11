@@ -66,5 +66,33 @@ export const en = {
     title: "Edit {name}",
     notFound: "Asset Not Found",
     notFoundDesc: "The asset you're trying to edit doesn't exist or has been removed."
+  },
+  dashboard: {
+    title: "Dashboard",
+    overview: "Overview of your company's tech inventory",
+    totalAssets: "Total Assets",
+    acrossAllCategories: "across all categories",
+    available: "Available",
+    readyForAssignment: "ready for assignment",
+    assigned: "Assigned",
+    currentlyInUse: "currently in use",
+    inMaintenance: "In Maintenance",
+    beingRepairedOrServiced: "being repaired or serviced",
+    assetDistribution: "Asset Distribution by Type",
+    assetStatus: "Asset Status",
+    recentlyUpdated: "Recently Updated Assets",
+    lastUpdatedItems: "Last updated items in your inventory",
+    tableHeaders: {
+      name: "Name",
+      type: "Type",
+      status: "Status",
+      assignedTo: "Assigned To",
+      lastUpdated: "Last Updated"
+    }
+  },
+  notFound: {
+    title: "404",
+    message: "Oops! Page not found",
+    returnHome: "Return to Home"
   }
 };

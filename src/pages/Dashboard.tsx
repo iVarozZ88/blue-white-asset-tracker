@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const typeIcons: Record<AssetType, React.ReactNode> = {
   computer: <Computer className="h-5 w-5" />,
@@ -48,6 +49,7 @@ const statusColors: Record<AssetStatus, string> = {
 };
 
 const Dashboard = () => {
+  const { t } = useLanguage();
   const typeCounts = getAssetTypeCount();
   const statusCounts = getAssetStatusCount();
   
@@ -66,58 +68,58 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t('dashboard.title')}</h1>
         <p className="text-muted-foreground">
-          Overview of your company's tech inventory
+          {t('dashboard.overview')}
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Assets</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.totalAssets')}</CardTitle>
             <Computer className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockAssets.length}</div>
             <p className="text-xs text-muted-foreground">
-              across all categories
+              {t('dashboard.acrossAllCategories')}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Available</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.available')}</CardTitle>
             <Check className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{statusCounts.available}</div>
             <p className="text-xs text-muted-foreground">
-              ready for assignment
+              {t('dashboard.readyForAssignment')}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Assigned</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.assigned')}</CardTitle>
             <User className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{statusCounts.assigned}</div>
             <p className="text-xs text-muted-foreground">
-              currently in use
+              {t('dashboard.currentlyInUse')}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">In Maintenance</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.inMaintenance')}</CardTitle>
             <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{statusCounts.maintenance}</div>
             <p className="text-xs text-muted-foreground">
-              being repaired or serviced
+              {t('dashboard.beingRepairedOrServiced')}
             </p>
           </CardContent>
         </Card>
@@ -126,7 +128,7 @@ const Dashboard = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Asset Distribution by Type</CardTitle>
+            <CardTitle>{t('dashboard.assetDistribution')}</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <div className="h-[300px] w-full">
@@ -158,7 +160,7 @@ const Dashboard = () => {
         </Card>
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Asset Status</CardTitle>
+            <CardTitle>{t('dashboard.assetStatus')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-[300px] w-full">
@@ -194,19 +196,19 @@ const Dashboard = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recently Updated Assets</CardTitle>
+          <CardTitle>{t('dashboard.recentlyUpdated')}</CardTitle>
           <CardDescription>
-            Last updated items in your inventory
+            {t('dashboard.lastUpdatedItems')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
             <div className="grid grid-cols-5 bg-muted/50 p-4 text-sm font-medium">
-              <div>Name</div>
-              <div>Type</div>
-              <div>Status</div>
-              <div>Assigned To</div>
-              <div>Last Updated</div>
+              <div>{t('dashboard.tableHeaders.name')}</div>
+              <div>{t('dashboard.tableHeaders.type')}</div>
+              <div>{t('dashboard.tableHeaders.status')}</div>
+              <div>{t('dashboard.tableHeaders.assignedTo')}</div>
+              <div>{t('dashboard.tableHeaders.lastUpdated')}</div>
             </div>
             <div className="divide-y">
               {recentAssets.map((asset) => (
@@ -225,7 +227,7 @@ const Dashboard = () => {
                       className="h-2 w-2 rounded-full"
                       style={{ backgroundColor: statusColors[asset.status] }}
                     />
-                    <span className="capitalize">{asset.status}</span>
+                    <span className="capitalize">{t(`category.${asset.status}`)}</span>
                   </div>
                   <div>{asset.assignedTo || "—"}</div>
                   <div>
