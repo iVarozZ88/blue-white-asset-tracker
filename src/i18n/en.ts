@@ -27,7 +27,8 @@ export const en = {
     maintenance: "Maintenance",
     retired: "Retired",
     noItemsFound: "No {category} found",
-    tryAdjusting: "Try adjusting your filters or add a new {itemSingular}"
+    tryAdjusting: "Try adjusting your filters or add a new {itemSingular}",
+    addNew: "Add New {item}"
   },
   assetDetails: {
     notFound: "Asset Not Found",
